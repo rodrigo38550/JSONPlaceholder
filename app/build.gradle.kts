@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt") // ✅ Required for annotation processing
 }
 
 android {
@@ -27,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+        targetCompatibility(JavaVersion.VERSION_1_8)
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -49,9 +51,13 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.common.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.retrofit)
-    implementation(libs.converter.scalars)
 
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson) // Gson Converter
+    implementation(libs.gson) // Gson Library
+
+    implementation(libs.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
     testImplementation(libs.junit)
