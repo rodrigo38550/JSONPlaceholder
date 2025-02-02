@@ -1,4 +1,4 @@
-package com.example.postsjsonplaceholder.data.model
+package com.example.postsjsonplacholder.data.model
 
 data class Post(
     val userId: Int,

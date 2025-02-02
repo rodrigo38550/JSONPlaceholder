@@ -1,7 +1,7 @@
-package com.example.postsjsonplaceholder.data.repository
+package com.example.postsjsonplacholder.data.repository
 
-import com.example.postsjsonplaceholder.data.model.Post
-import com.example.postsjsonplaceholder.data.remote.ApiService
+import com.example.postsjsonplacholder.data.model.Post
+import com.example.postsjsonplacholder.data.remote.ApiService
 import javax.inject.Inject
 
 class PostRepository @Inject constructor(private val apiService: ApiService) {

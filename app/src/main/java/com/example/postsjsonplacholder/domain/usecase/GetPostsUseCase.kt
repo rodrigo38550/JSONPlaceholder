@@ -1,7 +1,7 @@
 package com.example.postsjsonplaceholder.domain.usecase
 
-import com.example.postsjsonplaceholder.data.model.Post
-import com.example.postsjsonplaceholder.data.repository.PostRepository
+import com.example.postsjsonplacholder.data.model.Post
+import com.example.postsjsonplacholder.data.repository.PostRepository
 import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(private val repository: PostRepository) {

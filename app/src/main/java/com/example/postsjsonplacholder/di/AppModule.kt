@@ -1,6 +1,6 @@
-package com.example.postsjsonplaceholder.di
+package com.example.postsjsonplacholder.di
 
-import com.example.postsjsonplaceholder.data.remote.ApiService
+import com.example.postsjsonplacholder.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

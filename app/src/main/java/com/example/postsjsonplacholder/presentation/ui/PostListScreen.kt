@@ -1,30 +1,38 @@
-package com.example.postsjsonplaceholder.presentation.ui
+package com.example.postsjsonplacholder.presentation.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavBackStackEntry
-import com.example.postsjsonplaceholder.presentation.viewmodel.PostViewModel
+import androidx.navigation.NavController
+import com.example.postsjsonplacholder.presentation.viewmodel.PostViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostDetailScreen(backStackEntry: NavBackStackEntry, viewModel: PostViewModel = hiltViewModel()) {
-    val postId = backStackEntry.arguments?.getString("id")?.toIntOrNull()
-    val post by viewModel.posts.collectAsState()
+fun PostListScreen(navController: NavController, viewModel: PostViewModel = hiltViewModel()) {
+    val posts by viewModel.posts.collectAsState()
 
-    val selectedPost = post.firstOrNull { it.id == postId }
+    LaunchedEffect(Unit) { viewModel.fetchPosts() }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Post Detail") }) }
+        topBar = { TopAppBar(title = { Text("Posts") }) }
     ) { padding ->
-        Column(modifier = Modifier.padding(padding).padding(16.dp)) {
-            selectedPost?.let {
-                Text(it.title, style = MaterialTheme.typography.headlineMedium)
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(it.body, style = MaterialTheme.typography.bodyMedium)
+        LazyColumn(modifier = Modifier.padding(padding)) {
+            items(posts) { post ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .clickable { navController.navigate("postDetail/${post.id}") },
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                ) {
+                    Text(post.title, modifier = Modifier.padding(16.dp))
+                }
             }
         }
     }

@@ -1,2 +1,2 @@
-package com.example.postsjsonplacholder.remote
+package com.example.postsjsonplacholder.data.remote
 

@@ -1,6 +1,6 @@
-package com.example.postsjsonplaceholder.data.remote
+package com.example.postsjsonplacholder.data.remote
 
-import com.example.postsjsonplaceholder.data.model.Post
+import com.example.postsjsonplacholder.data.model.Post
 import retrofit2.http.GET
 import retrofit2.http.Path
 
